@@ -29,7 +29,7 @@ const RootQuery = new GraphQLObjectType({
             args:{id:{type:GraphQLString}},// a necessary property from the user
             resolve(parent,args){
                 //code to get data from the db
-                return _.find(books,{id:args.id})
+                return _.find(books,{id:args.id});
             }
         }
     }
