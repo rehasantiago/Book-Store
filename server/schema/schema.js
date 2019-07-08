@@ -23,7 +23,7 @@ var authors = [
 //made an obj which has the name book and the following fields
 const BookType = new GraphQLObjectType({
     name : 'Book',//name is book
-    fields : () => ({//is a fn cause we are not executing the fn till whole of the file is run...if it was an obj then would give an error that AuthorType is not defined as its defined afterwards
+    fields : () => ({//is a fn cause we are not executing the fn till whole file is run...if it was an obj then it'll give an error that AuthorType is not defined as its defined afterwards
         id : {type : GraphQLID},//each field has a type which is to be imported from graphql
         name : {type:GraphQLString},
         genre:{type:GraphQLString},
@@ -68,6 +68,18 @@ const RootQuery = new GraphQLObjectType({
             args:{id:{type:GraphQLID}},
             resolve(parent,args){
                 return _.find(authors,{id:args.id});
+            }
+        },
+        books:{
+            type:new GraphQLList(BookType),
+            resolve(parent,args){
+                return books;
+            }
+        },
+        authors:{
+            type:new GraphQLList(AuthorType),
+            resolve(parent,args){
+                return authors;
             }
         }
     }
