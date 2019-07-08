@@ -2,13 +2,16 @@ const graphql = require('graphql');
 const _ = require('lodash');
 
 
-const {GraphQLObjectType,GraphQLString,GraphQLSchema,GraphQLID,GraphQLInt} = graphql;
+const {GraphQLObjectType,GraphQLString,GraphQLSchema,GraphQLID,GraphQLInt,GraphQLList} = graphql;
 
 //dummy data
 var books = [
     {name:'reha',genre:'santiago',id:"1",authorId:"1"},
     {name:'praju',genre:'ugal',id:"2",authorId:"2"},
-    {name:'sangi',genre:'rath',id:"3",authorId:"3"}
+    {name:'sangi',genre:'rath',id:"3",authorId:"3"},
+    {name:"ram",genre:"hello",id:"4",authorId:"1"},
+    {name:"gloria",genre:"menezes",id:"5",authorId:"2"},
+    {name:"ruchi",genre:"wagh",id:"6",authorId:"3"}
 ];
 
 var authors = [
@@ -20,7 +23,7 @@ var authors = [
 //made an obj which has the name book and the following fields
 const BookType = new GraphQLObjectType({
     name : 'Book',//name is book
-    fields : () => ({
+    fields : () => ({//is a fn cause we are not executing the fn till whole of the file is run...if it was an obj then would give an error that AuthorType is not defined as its defined afterwards
         id : {type : GraphQLID},//each field has a type which is to be imported from graphql
         name : {type:GraphQLString},
         genre:{type:GraphQLString},
@@ -38,7 +41,13 @@ const AuthorType = new GraphQLObjectType({
     fields : () => ({
         id : {type : GraphQLID},//each field has a type which is to be imported from graphql
         name : {type:GraphQLString},
-        age:{type:GraphQLInt}
+        age:{type:GraphQLInt},
+        books:{
+            type: new GraphQLList(BookType),
+            resolve(parent,args){
+                return _.filter(books,{authorId:parent.id});
+            }
+        }
     })
 });
 
