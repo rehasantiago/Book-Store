@@ -6,9 +6,9 @@ const {GraphQLObjectType,GraphQLString,GraphQLSchema,GraphQLID,GraphQLInt} = gra
 
 //dummy data
 var books = [
-    {name:'reha',genre:'santiago',id:"1"},
-    {name:'praju',genre:'ugal',id:"2"},
-    {name:'sangi',genre:'rath',id:"3"}
+    {name:'reha',genre:'santiago',id:"1",authorId:"1"},
+    {name:'praju',genre:'ugal',id:"2",authorId:"2"},
+    {name:'sangi',genre:'rath',id:"3",authorId:"3"}
 ];
 
 var authors = [
@@ -23,7 +23,13 @@ const BookType = new GraphQLObjectType({
     fields : () => ({
         id : {type : GraphQLID},//each field has a type which is to be imported from graphql
         name : {type:GraphQLString},
-        genre:{type:GraphQLString}
+        genre:{type:GraphQLString},
+        author:{
+            type:AuthorType,
+            resolve(parent,args){//parent contains all the info the parent
+                return _.find(authors,{id:parent.authorId});
+            }
+        }
     })
 });
 
