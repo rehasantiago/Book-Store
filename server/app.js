@@ -6,7 +6,8 @@ const app = express();
 
 //the fn will handle any request made to /graphql
 app.use('/graphql',graphqlHTTP({
-    schema //this is schema:schema but we are using es6
+    schema, //this is schema:schema but we are using es6
+    graphiql:true
 }))
 //takes in some options
 
