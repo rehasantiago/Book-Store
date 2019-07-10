@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 
 //connecting to the db
-mongoose.connect('mongodb+srv://Reha:Rehasantiago24@bookstore-p5lwo.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser: true});
+mongoose.connect('mongodb+srv://<username>:<password>@bookstore-p5lwo.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser: true});//enter your connection string
 mongoose.connection.once('open',() => {
     console.log('connected to db');
 });//once the connection is open log the following to the console
