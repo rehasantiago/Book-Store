@@ -29,7 +29,7 @@ mutation($name:String!,$genre:String!,$authorId:ID!){
 
 
 const getBookQuery = gql`
-query($id:ID!){
+query($id:ID){
     book(id:$id){
         id
         name
