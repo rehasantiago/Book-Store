@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import BookList from './components/BookList';
 import ApolloClient from "apollo-boost";
-import ApolloProvider from "react-apollo";
+import {ApolloProvider} from "react-apollo";
 
 
 const client = new ApolloClient({
@@ -11,11 +11,11 @@ const client = new ApolloClient({
 class App extends Component {
   render(){
     return (
-      <ApolloProvider client={client}
-      <div id="main">
-        <h1>Book Store</h1>
-        <BookList/>  
-      </div>
+      <ApolloProvider client={client}>
+        <div id="main">
+          <h1>Book Store</h1>
+          <BookList/>  
+        </div>
       </ApolloProvider>
     );
   }

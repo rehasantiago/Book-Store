@@ -2,7 +2,10 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');//graphqlHTTP is the fucking convention
 const schema = require('./schema/schema');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
 const app = express();
+app.use(cors());
 
 //connecting to the db
 mongoose.connect('mongodb+srv://Reha:Rehasantiago24@bookstore-p5lwo.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser: true});
