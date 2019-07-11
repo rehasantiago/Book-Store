@@ -4,5 +4,5 @@ An book store application where you can add or get different books,their authors
 
 For running the app  
 create a cluster in mongo db and paste the connection string in server/app.js  
-npm install - in client and server  
-npm start - in client and server  
+*npm install* - in client and server  
+*npm start* - in client and server  
